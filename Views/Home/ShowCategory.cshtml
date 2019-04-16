@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class="container">
+        @model Category
+        <h1>Category: @Model.Name</h1>
+        <h4>Products:</h4>
+        <ol>
+            @{
+                foreach(var categoryProduct in @Model.Products) 
+                {
+                    <li>@categoryProduct.Product.Name</li>
+                }
+            }
+        </ol>
+        <h4>Add Product:</h4>
+        <form asp-action="AddProductToCategory" asp-controller="Home" method="post">
+            <select name="Name" id="">
+                @{
+                    foreach(var availableProduct in @ViewBag.AvailableProducts) 
+                    {
+                        <option value="@availableProduct.ProductId">@availableProduct.Name</option>
+                    }
+                }
+            </select>
+            <br>
+            <br>
+            <br>
+            <input type="submit" value="Add">
+        </form>
+    </div>
+</body>
+</html>
